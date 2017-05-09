@@ -51,16 +51,6 @@ export default class ChatListPage extends React.Component {
       });
 
       this.setState({ chats: chats });
-      // this.setState({
-      //   todos: todos.sort((a, b) => {
-      //     if ((a.done === false) && (b.done === true))
-      //       return -1;
-      //     else if ((a.done === true) && (b.done === false))
-      //       return 1;
-      //     else
-      //       return 0;
-      //   })
-      // });
 
     });
   }
@@ -100,21 +90,11 @@ export default class ChatListPage extends React.Component {
     );
   }
 
-  // toggleItemState(item) {
 
-  //   this.todosRef.child(item.key).once('value', (snap) => {
-
-  //     this.todosRef.child(item.key)
-  //       .set({
-  //         title: snap.val().title,
-  //         done: snap.val().done === true ? false : true
-  //       });
-  //   });
-  // }
-
-  // removeItem(item) {
-  //   this.todosRef.child(item.key).remove();
-  // }
+  navigateToChat(chatName, userName) {
+    const { navigate } = this.props.navigation;
+    navigate('Chat', { chatName: chatName, userName: userName })
+  }
 
   shouldItemUpdate(prev, next) {
     return prev.item !== next.item;
@@ -122,7 +102,8 @@ export default class ChatListPage extends React.Component {
 
   renderItem = ({ item }) => (
     <ListItem
-      item={item} />
+      item={item}
+      onPress={this.navigateToChat.bind(this, item.chatName, "user")} />
   );
 
   render() {
