@@ -26,7 +26,7 @@ export default class LoginPage extends React.Component {
         .signInAnonymously()
         .then(() => {
           console.log("Successfully logged in");
-          navigate('UserList', { userName: this.state.userName });
+          navigate('ChatList', { userName: this.state.userName });
         });
 
     } catch (error) {

@@ -4,7 +4,7 @@ import { View, TouchableHighlight, Text, StyleSheet } from 'react-native';
 export default class ListItem extends Component {
 
   // Dynamic style sheet returning method
-  textStyle(connected) {
+  textStyle(isPublic) {
     return {
       color: '#333',
       fontSize: 16,
@@ -15,7 +15,7 @@ export default class ListItem extends Component {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.li}>
-          <Text style={this.textStyle(this.props.item.connected)}>{this.props.item.userName}</Text>
+          <Text style={this.textStyle(this.props.item.isPublic)}>{this.props.item.chatName}</Text>
         </View>
       </TouchableHighlight>
     );

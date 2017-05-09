@@ -11,7 +11,7 @@ import { Navigation, NavigationActions, StackNavigator } from 'react-navigation'
 
 // Pages
 import LoginPage from './pages/LoginPage'
-import UserListPage from './pages/UserListPage'
+import ChatListPage from './pages/ChatListPage'
 
 
 // let navOptionsLogout = ({ navigation, screenProps }) => {
@@ -56,7 +56,7 @@ let navOptions = {
 // Navigation stack configuration
 const FirebaseChat = StackNavigator({
   Login: { screen: LoginPage, navigationOptions: navOptions },
-  UserList: { screen: UserListPage, navigationOptions: navOptions },
+  ChatList: { screen: ChatListPage, navigationOptions: navOptions },
 });
 
 AppRegistry.registerComponent('FirebaseChat', () => FirebaseChat);
