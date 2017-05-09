@@ -5,61 +5,58 @@ import {
   View,
   Button,
 } from 'react-native';
-import * as firebase from "firebase";
+import firebase from "./firebase/Firebase";
 import { Navigation, NavigationActions, StackNavigator } from 'react-navigation';
 
 
 // Pages
 import LoginPage from './pages/LoginPage'
-import TodoPage from './pages/ChatList'
+import UserListPage from './pages/UserListPage'
 
 
-let navOptionsLogout = {
-  header: (navigation) => ({
-    left: <Button
-      title='Logout'
-      color='#E8E8E8'
-      onPress={() => {
-        try {
-          firebase.auth().signOut()
-            .then(() => {
-              console.log("Successfully logged out");
-              const backAction = NavigationActions.back();
-              navigation.dispatch(backAction);
-            });
+// let navOptionsLogout = ({ navigation, screenProps }) => {
+//   /*headerLeft: <Button
+//                 title='Logout'
+//                 color='#E8E8E8'
+//                 onPress={() => {
+//                   try {
+//                     firebase.auth().signOut()
+//                       .then(() => {
+//                         console.log("Successfully logged out");
+//                         const backAction = NavigationActions.back();
+//                         navigation.dispatch(backAction);
+//                       });
 
-        } catch (error) {
-          console.log(error);
-        }
-      }}
-    />,
-    titleStyle: {
-      color: '#E8E8E8'
-    },
-    tintColor: '#E8E8E8',
-    style: {
-      backgroundColor: '#484848'
-    }
-  })
-}
+//                   } catch (error) {
+//                     console.log(error);
+//                   }
+//                 }}
+//               />,*/
+
+//   headerTintColor: '#E8E8E8',
+//   headerTitleStyle: {
+//     color: '#E8E8E8'
+//   },
+//   headerStyle: {
+//     backgroundColor: '#484848'
+//   }
+// }
 
 let navOptions = {
-  header: (navigation) => ({
-    titleStyle: {
-      color: '#E8E8E8'
-    },
-    tintColor: '#E8E8E8',
-    style: {
-      backgroundColor: '#484848'
-    }
-  })
+  headerTintColor: '#E8E8E8',
+  headerTitleStyle: {
+    color: '#E8E8E8'
+  },
+  headerStyle: {
+    backgroundColor: '#484848'
+  }
 }
 
 
 // Navigation stack configuration
-const RNFirebaseChat = StackNavigator({
+const FirebaseChat = StackNavigator({
   Login: { screen: LoginPage, navigationOptions: navOptions },
-  ChatList: { screen: ChatListPage, navigationOptions: navOptionsLogout },
+  UserList: { screen: UserListPage, navigationOptions: navOptions },
 });
 
-AppRegistry.registerComponent('RNFirebaseChat', () => RNFirebaseChat);
+AppRegistry.registerComponent('FirebaseChat', () => FirebaseChat);
