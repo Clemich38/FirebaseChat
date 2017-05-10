@@ -30,7 +30,7 @@ export default class ChatPage extends React.Component {
     super(props);
 
     this.messagesRef = firebase.app().database().ref().child('chatsGroups')
-                                                      .child(props.navigation.state.params.chatName)
+                                                      .child(props.navigation.state.params.key)
                                                       .child('messages');
 
     // this.state = {

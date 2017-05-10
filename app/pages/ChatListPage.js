@@ -91,9 +91,9 @@ export default class ChatListPage extends React.Component {
   }
 
 
-  navigateToChat(chatName, userName) {
+  navigateToChat(item, userName) {
     const { navigate } = this.props.navigation;
-    navigate('Chat', { chatName: chatName, userName: userName })
+    navigate('Chat', { chatName: item.chatName, userName: userName, key: item.key })
   }
 
   shouldItemUpdate(prev, next) {
@@ -103,7 +103,7 @@ export default class ChatListPage extends React.Component {
   renderItem = ({ item }) => (
     <ListItem
       item={item}
-      onPress={this.navigateToChat.bind(this, item.chatName, "user")} />
+      onPress={this.navigateToChat.bind(this, item, "user")} />
   );
 
   render() {
