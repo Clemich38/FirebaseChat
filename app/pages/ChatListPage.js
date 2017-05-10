@@ -26,10 +26,10 @@ export default class ChatListPage extends React.Component {
     // Realtime Database reference
     // Database/chats
     this.chatsRef = firebase.app().database().ref().child('chatsGroups');
-    // this.addChat(props.navigation.state.params.chatName);
 
     this.state = {
-      chats: []
+      chats: [],
+      userName: props.navigation.state.params.userName
     };
   }
 
@@ -95,9 +95,9 @@ export default class ChatListPage extends React.Component {
   }
 
 
-  navigateToChat(item, userName) {
+  navigateToChat(item) {
     const { navigate } = this.props.navigation;
-    navigate('Chat', { chatName: item.chatName, userName: userName, key: item.key })
+    navigate('Chat', { chatName: item.chatName, userName: this.state.userName, key: item.key })
   }
 
   shouldItemUpdate(prev, next) {
@@ -107,13 +107,16 @@ export default class ChatListPage extends React.Component {
   renderItem = ({ item }) => (
     <ListItem
       item={item}
-      onPress={this.navigateToChat.bind(this, item, "user")} />
+      onPress={this.navigateToChat.bind(this, item)} />
   );
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Text>
+          Welcome {this.state.userName}
+        </Text>
         <Button
           onPress={() => this.logout()}
           color={'#484848'}

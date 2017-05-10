@@ -19,7 +19,8 @@ export default class ChatPage extends React.Component {
   state = {
     scrollViewHeight: 0,
     inputHeight: 0,
-    messages: []
+    messages: [],
+    userName: ""
   }
 
   static navigationOptions = {
@@ -30,9 +31,9 @@ export default class ChatPage extends React.Component {
     super(props);
 
 
-    // this.state = {
-    //   messages: []
-    // };
+    this.state = {
+      userName: props.navigation.state.params.userName
+    };
 
   }
 
@@ -82,7 +83,7 @@ export default class ChatPage extends React.Component {
   addMessage(text) {
     this.messagesRef.push({
         text: text,
-        author: 'test author',
+        author: this.state.userName,
         timeStamp: 2
       })
   }
@@ -93,7 +94,8 @@ export default class ChatPage extends React.Component {
 
   renderItem = ({ item }) => (
     <Message
-      item={item}/>
+      item={item}
+      me={this.state.userName}/>
   );
 
   render() {
