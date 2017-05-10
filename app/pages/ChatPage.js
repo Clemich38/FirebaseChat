@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import firebase from "../firebase/Firebase";
 import { NavigationActions } from 'react-navigation';
-import Message from '../components/Message'
+import Message from '../components/Message';
+import MessageInput from '../components/MessageInput';
 
 
 export default class ChatPage extends React.Component {
@@ -81,6 +82,7 @@ export default class ChatPage extends React.Component {
           renderItem={this.renderItem}
           shouldItemUpdate={this.shouldItemUpdate}
         />
+        <MessageInput onPress={this.addMessage.bind(this, "new text")} />
       </View>
     );
   }
