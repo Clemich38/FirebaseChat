@@ -16,6 +16,12 @@ import MessageInput from '../components/MessageInput';
 
 export default class ChatPage extends React.Component {
 
+  state = {
+    scrollViewHeight: 0,
+    inputHeight: 0,
+    messages: []
+  }
+
   static navigationOptions = {
     title: 'Chat',
   };
@@ -27,14 +33,33 @@ export default class ChatPage extends React.Component {
                                                       .child(props.navigation.state.params.chatName)
                                                       .child('messages');
 
-    this.state = {
-      messages: []
-    };
+    // this.state = {
+    //   messages: []
+    // };
 
   }
 
   componentDidMount() {
     this.listenForMessages(this.messagesRef);
+    let wait = new Promise((resolve) => setTimeout(resolve, 500));  // Smaller number should work
+    wait.then(() => {
+      this.list.scrollToEnd({ animated: true });
+    });
+    
+  }
+
+  componentDidUpdate() {
+    // let wait = new Promise((resolve) => setTimeout(resolve, 500));  // Smaller number should work
+    // wait.then(() => {
+      this.list.scrollToEnd({ animated: true });
+    // });
+  }
+  
+  onScrollViewLayout = (event) => {
+    const layout = event.nativeEvent.layout;
+    this.setState({
+      scrollViewHeight: layout.height
+    });
   }
 
   listenForMessages(messagesRef) {
@@ -64,6 +89,18 @@ export default class ChatPage extends React.Component {
       })
   }
 
+  scrollToBottom(animate = true) {
+    const { scrollViewHeight, inputHeight } = this.state,
+      { chatHeight } = this.props;
+    const scrollTo = chatHeight - scrollViewHeight + inputHeight;
+    if (scrollTo > 0) {
+      this.refs.scroll.scrollToPosition(0, scrollTo, animate)
+    }
+  }
+  _scrollToInput(reactRef) {
+    this.refs.scroll.scrollToFocusedInput(ReactNative.findNodeHandle(reactRef));
+  }
+
   shouldItemUpdate(prev, next) {
     return prev.item !== next.item;
   }
@@ -78,6 +115,7 @@ export default class ChatPage extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
+          ref={(ref) => { this.list = ref; }}
           data={this.state.messages}
           renderItem={this.renderItem}
           shouldItemUpdate={this.shouldItemUpdate}

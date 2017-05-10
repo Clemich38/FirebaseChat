@@ -14,6 +14,7 @@ export default class MessageInput extends Component {
 
   localPress() {
     this.props.onPress(this.state.text)
+    this.setState({text: ""});
   }
 
   render() {
