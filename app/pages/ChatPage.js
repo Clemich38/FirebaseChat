@@ -29,9 +29,6 @@ export default class ChatPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.messagesRef = firebase.app().database().ref().child('chatsGroups')
-                                                      .child(props.navigation.state.params.key)
-                                                      .child('messages');
 
     // this.state = {
     //   messages: []
@@ -40,16 +37,26 @@ export default class ChatPage extends React.Component {
   }
 
   componentDidMount() {
+
+    this.messagesRef = firebase.app().database().ref().child('chatsGroups')
+                                                      .child(this.props.navigation.state.params.key)
+                                                      .child('messages');
+
     this.listenForMessages(this.messagesRef);
+    
     let wait = new Promise((resolve) => setTimeout(resolve, 500));  // Smaller number should work
     wait.then(() => {
-      this.list.scrollToEnd({ animated: false });
+      this.refs.list.scrollToEnd({ animated: false });
     });
     
   }
 
+  componentWillUnmount() {
+    this.messagesRef.off();
+  }
+
   componentDidUpdate() {
-      this.list.scrollToEnd({ animated: true });
+      this.refs.list.scrollToEnd({ animated: true });
   }
   
 
@@ -94,7 +101,7 @@ export default class ChatPage extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          ref={(ref) => { this.list = ref; }}
+          ref="list"
           data={this.state.messages}
           renderItem={this.renderItem}
           shouldItemUpdate={this.shouldItemUpdate}

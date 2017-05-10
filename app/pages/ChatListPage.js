@@ -37,6 +37,10 @@ export default class ChatListPage extends React.Component {
     this.listenForChats(this.chatsRef);
   }
 
+  componentWillUnmount() {
+    this.chatsRef.off();
+  }
+
   listenForChats(chatsRef) {
     chatsRef.on('value', (snap) => {
 
