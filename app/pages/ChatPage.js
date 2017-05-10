@@ -52,12 +52,6 @@ export default class ChatPage extends React.Component {
       this.list.scrollToEnd({ animated: true });
   }
   
-  onScrollViewLayout = (event) => {
-    const layout = event.nativeEvent.layout;
-    this.setState({
-      scrollViewHeight: layout.height
-    });
-  }
 
   listenForMessages(messagesRef) {
     messagesRef.on('value', (snap) => {
@@ -84,18 +78,6 @@ export default class ChatPage extends React.Component {
         author: 'test author',
         timeStamp: 2
       })
-  }
-
-  scrollToBottom(animate = true) {
-    const { scrollViewHeight, inputHeight } = this.state,
-      { chatHeight } = this.props;
-    const scrollTo = chatHeight - scrollViewHeight + inputHeight;
-    if (scrollTo > 0) {
-      this.refs.scroll.scrollToPosition(0, scrollTo, animate)
-    }
-  }
-  _scrollToInput(reactRef) {
-    this.refs.scroll.scrollToFocusedInput(ReactNative.findNodeHandle(reactRef));
   }
 
   shouldItemUpdate(prev, next) {
