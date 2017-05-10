@@ -82,7 +82,7 @@ export default class ChatPage extends React.Component {
           renderItem={this.renderItem}
           shouldItemUpdate={this.shouldItemUpdate}
         />
-        <MessageInput onPress={this.addMessage.bind(this, "new text")} />
+        <MessageInput onPress={this.addMessage.bind(this)} />
       </View>
     );
   }

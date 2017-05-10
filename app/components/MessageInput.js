@@ -12,6 +12,10 @@ export default class MessageInput extends Component {
     }
   }
 
+  localPress() {
+    this.props.onPress(this.state.text)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +28,7 @@ export default class MessageInput extends Component {
         <TouchableHighlight
           style={styles.action}
           underlayColor='steelblue'
-          onPress={this.props.onPress}>
+          onPress={this.localPress.bind(this)}>
           <Text style={styles.actionText}>Send</Text>
         </TouchableHighlight>
       </View>
