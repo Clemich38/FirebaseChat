@@ -43,16 +43,13 @@ export default class ChatPage extends React.Component {
     this.listenForMessages(this.messagesRef);
     let wait = new Promise((resolve) => setTimeout(resolve, 500));  // Smaller number should work
     wait.then(() => {
-      this.list.scrollToEnd({ animated: true });
+      this.list.scrollToEnd({ animated: false });
     });
     
   }
 
   componentDidUpdate() {
-    // let wait = new Promise((resolve) => setTimeout(resolve, 500));  // Smaller number should work
-    // wait.then(() => {
       this.list.scrollToEnd({ animated: true });
-    // });
   }
   
   onScrollViewLayout = (event) => {
