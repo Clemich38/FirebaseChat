@@ -15,33 +15,33 @@ import ChatListPage from './pages/ChatListPage'
 import ChatPage from './pages/ChatPage'
 
 
-// let navOptionsLogout = ({ navigation, screenProps }) => {
-//   /*headerLeft: <Button
-//                 title='Logout'
-//                 color='#E8E8E8'
-//                 onPress={() => {
-//                   try {
-//                     firebase.auth().signOut()
-//                       .then(() => {
-//                         console.log("Successfully logged out");
-//                         const backAction = NavigationActions.back();
-//                         navigation.dispatch(backAction);
-//                       });
+let navOptionsLogout = ({ navigation, screenProps }) => ({
+  headerLeft: <Button
+    title='Logout'
+    color='#E8E8E8'
+    onPress={() => {
+      try {
+        firebase.auth().signOut()
+          .then(() => {
+            console.log("Successfully logged out");
+            const backAction = NavigationActions.back();
+            navigation.dispatch(backAction);
+          });
 
-//                   } catch (error) {
-//                     console.log(error);
-//                   }
-//                 }}
-//               />,*/
+      } catch (error) {
+        console.log(error);
+      }
+    }}
+  />,
 
-//   headerTintColor: '#E8E8E8',
-//   headerTitleStyle: {
-//     color: '#E8E8E8'
-//   },
-//   headerStyle: {
-//     backgroundColor: '#484848'
-//   }
-// }
+  headerTintColor: '#E8E8E8',
+  headerTitleStyle: {
+    color: '#E8E8E8'
+  },
+  headerStyle: {
+    backgroundColor: '#484848'
+  }
+});
 
 let navOptions = {
   headerTintColor: '#E8E8E8',
@@ -57,7 +57,7 @@ let navOptions = {
 // Navigation stack configuration
 const FirebaseChat = StackNavigator({
   Login: { screen: LoginPage, navigationOptions: navOptions },
-  ChatList: { screen: ChatListPage, navigationOptions: navOptions },
+  ChatList: { screen: ChatListPage, navigationOptions: navOptionsLogout },
   Chat: { screen: ChatPage, navigationOptions: navOptions },
 });
 

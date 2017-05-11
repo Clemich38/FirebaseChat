@@ -19,6 +19,7 @@ export default class ChatListPage extends React.Component {
   static navigationOptions = {
     title: 'Chat List',
   };
+  
 
   constructor(props) {
     super(props);
@@ -114,14 +115,9 @@ export default class ChatListPage extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.title}>
           Welcome {this.state.userName}
         </Text>
-        <Button
-          onPress={() => this.logout()}
-          color={'#484848'}
-          title="Logout"
-        />
         <FlatList
           data={this.state.chats}
           renderItem={this.renderItem}
@@ -139,6 +135,14 @@ const styles = StyleSheet.create({
   },
   listview: {
     flex: 1,
+  },
+  title: {
+    color: 'dimgrey',
+    paddingTop: 15,
+    paddingBottom: 15,
+    fontWeight: 'bold',
+    fontSize: 22,
+    textAlign: 'center'
   },
 })
 
