@@ -8,7 +8,7 @@ export default class ActionButton extends Component {
     return (
       <View style={styles.action}>
         <TouchableHighlight
-          underlayColor='steelblue'
+          underlayColor='cornflowerblue'
           onPress={this.props.onPress}>
           <Text style={styles.actionText}>{this.props.title}</Text>
         </TouchableHighlight>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   action: {
-    backgroundColor: 'steelblue',
+    backgroundColor: 'cornflowerblue',
     borderColor: 'transparent',
     borderWidth: 1,
     paddingLeft: 16,

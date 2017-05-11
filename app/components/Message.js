@@ -6,7 +6,7 @@ export default class Message extends Component {
   // Dynamic style sheet returning method
   textStyle(author, me) {
     return {
-      color: '#333',
+      color: (author === me) ? '#fff' : '#333',
       fontSize: 16,
       textAlign: (author === me) ? 'right': 'left',
     }
