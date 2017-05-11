@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import firebase from "../firebase/Firebase";
 import { NavigationActions } from 'react-navigation'
+import prompt from 'react-native-prompt-android';
 import ListItem from '../components/ListItem'
 import ActionButton from '../components/ActionButton'
 
@@ -77,7 +78,7 @@ export default class ChatListPage extends React.Component {
   }
 
   addChat(name) {
-    AlertIOS.prompt(
+    prompt(
       'Create New chtat',
       null,
       [
