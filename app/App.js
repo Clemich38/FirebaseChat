@@ -17,7 +17,7 @@ import ChatPage from './pages/ChatPage'
 
 let navOptionsLogout = ({ navigation, screenProps }) => ({
   headerLeft: <Button
-    title='Logout'
+    title='<'
     color='#E8E8E8'
     onPress={() => {
       try {
