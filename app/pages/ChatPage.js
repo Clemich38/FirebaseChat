@@ -57,7 +57,10 @@ export default class ChatPage extends React.Component {
   }
 
   componentDidUpdate() {
+    let wait = new Promise((resolve) => setTimeout(resolve, 100));  // Smaller number should work
+    wait.then(() => {
       this.refs.list.scrollToEnd({ animated: true });
+    });
   }
   
 
